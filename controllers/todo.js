@@ -20,4 +20,10 @@ router.post('/', (req, res) => {
   })
 })
 
+router.put('/:id', (req, res) => {
+  Todos.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, data) => {
+    res.json(data);
+  })
+})
+
 module.exports = router;

@@ -1,6 +1,8 @@
 const app = angular.module('MyApp', []);
 
 app.controller('MyController', ['$http', function($http){
+  this.indexOfEdit;
+
   this.createToDo = () => {
     $http({
       method: 'POST',
@@ -29,6 +31,19 @@ app.controller('MyController', ['$http', function($http){
       url: '/todo/' + param._id
     }).then((res) => {
         this.getList();
+    })
+  }
+
+  this.updateToDo = (param) => {
+    $http({
+      method: 'PUT',
+      url: '/todo/' + param._id,
+      data: {
+        description: param.description
+      }
+    }).then((res) => {
+      this.indexOfEdit = '';
+      this.getList();
     })
   }
 }]);

@@ -23,7 +23,11 @@
   <div class="container list">
     <div class="row list-item" ng-repeat="item in ctrl.list">
       <div class='col-8 d-flex align-items-center'>
-        <p>{{ item.description }}</p>
+        <p><a href="#" ng-if="$index !== ctrl.indexOfEdit" ng-click="ctrl.indexOfEdit = $index">{{ item.description }}</a></p>
+        <form ng-submit="ctrl.updateToDo(item)" ng-if="$index === ctrl.indexOfEdit" >
+          <input type="text" ng-model="item.description" />
+        </form>
+
       </div>
       <form class="col-4 text-right" ng-submit="ctrl.deleteToDo(item)">
         <input class="btn btn-danger" type="Submit" value="Done" />
